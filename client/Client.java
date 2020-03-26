@@ -3,11 +3,15 @@ import java.net.*;
 import java.io.*;
 
 /**
- * A command line client for the poll server. Requires a request to show
- * the poll or vote for an option. Exits after printing the response.
+ *  A command line client for the poll server. Requires a request to show
+ *  the poll or vote for an option. Exits after printing the response.
  */
 public class Client {
 
+    /**
+     *  Connects to the server socket and establishes I/O streams to send request.
+     *  Outputs the servers response.
+     */
     Client(String request, String option) throws IOException {
         try (Socket socket = new Socket("localhost", 7777)) {
             Scanner in = new Scanner(socket.getInputStream());
