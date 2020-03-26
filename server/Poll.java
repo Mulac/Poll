@@ -2,8 +2,12 @@ import java.util.Map;
 import java.util.HashMap;
 
 public class Poll {
+    // Poll votes are stored as a map.  [ option -> no. votes ]
     private Map<String, Integer> poll = new HashMap<>();
 
+    /** Initalises the poll.
+     *  @param options options to be voted for
+     */
     Poll(String[] options){
         // Add all vote options with 0 votes
         for (String voteOption : options){
@@ -28,6 +32,9 @@ public class Poll {
         }
     }
 
+    /**
+     * @return line for each vote option with the no. votes it has
+     */
     @Override
     public String toString() {
         StringBuilder results = new StringBuilder();
