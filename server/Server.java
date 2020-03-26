@@ -11,11 +11,15 @@ import java.util.concurrent.*;
  *  Currently only to be used on localhost.
  */
 public class Server {
-    // Members to hold the poll and log
-    private static Poll poll;
-    private static Writer log;
-    private static ServerSocket listener;
+    private static Poll poll;			// The poll object
+    private static Writer log;			// The log output stream
+    private static ServerSocket listener;	// The listening socket
 
+    /**	---CLI---
+     *  Starts the server on port 7777 and listens for connections, creating new threads for each one. 
+     *
+     *	@param args the options for the poll
+     */
     public static void main(String[] args) {
         if (args.length < 2){
             System.err.println("Too few vote options");
@@ -58,12 +62,17 @@ public class Server {
         }
     }
 
+    /**	The handler Thread.
+     *
+     *	Given a client socket it will evaluate the request and provide the appropriate response.
+     *  Logs the request with a timestamp and client ip.
+     */
     private static class PollHandler implements Runnable {
         private Socket socket;
         private String timestamp;
 
         PollHandler(Socket socket) {
-	        timestamp = new SimpleDateFormat("yyyy/MM/dd : HH/mm/ss : ").format(new Date()); 
+	    timestamp = new SimpleDateFormat("yyyy/MM/dd : HH/mm/ss : ").format(new Date()); 
             this.socket = socket;
         }
 
